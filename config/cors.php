@@ -19,7 +19,10 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => [
+        'https://cst5l-bitforge-frontend-production.up.railway.app',
+        'http://localhost:8080' // For local development
+    ],
 
     'allowed_origins_patterns' => [],
 
