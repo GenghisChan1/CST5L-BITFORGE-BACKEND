@@ -129,6 +129,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('/populate-items', [PopulateController::class, 'populateItems']);
+
 Route::get('/populate-top-pre-build-desktops', [PopulateController::class, 'populateTopPreBuildDesktops']);
 Route::get('/populate-top-items', [PopulateController::class, 'populateTopItems']);
 Route::get('/show-item/{id}', [ItemsController::class, 'show']);
@@ -138,3 +139,10 @@ Route::post('/signin', [AuthController::class, 'signUp']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::post('/calculate-distance', [DistanceController::class, 'calculateDistance']);
+
+Route::options('/{any}', function () {
+    return response()->noContent()
+        ->header('Access-Control-Allow-Origin', '*')
+        ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+        ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+})->where('any', '.*');
