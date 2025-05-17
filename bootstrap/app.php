@@ -12,18 +12,16 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // Add global middleware
-        $middleware->append([
-            \Illuminate\Http\Middleware\HandleCors::class, // Laravel's built-in CORS
+        // Add FIRST in middleware stack
+        $middleware->prepend([
+            \Illuminate\Http\Middleware\HandleCors::class,
+            \App\Http\Middleware\ForceCors::class,
         ]);
         
-        // Or if using custom CORS middleware:
-        // $middleware->append(\App\Http\Middleware\CorsMiddleware::class);
-        
-        // API middleware group (applied to routes in routes/api.php)
-        $middleware->group('api', [
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+        // Railway proxy support
+        $middleware->trustProxies(at: [
+            '*.railway.app',
+            '*.up.railway.app'
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

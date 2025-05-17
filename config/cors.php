@@ -15,13 +15,18 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie', ],
+    'paths' => [
+        'api/*', 
+        'sanctum/csrf-cookie',
+        '*'
+     ],
 
     'allowed_methods' => ['*'],
 
     'allowed_origins' => [
         'https://cst5l-bitforge-frontend-production.up.railway.app',
-        'http://localhost:8080' // For local development
+        'http://localhost:8080', // For local development
+        
     ],
 
     'allowed_origins_patterns' => [],
@@ -32,6 +37,6 @@ return [
 
     'max_age' => 0,
 
-    'supports_credentials' => true,
+    'supports_credentials' => false,
 
 ];
