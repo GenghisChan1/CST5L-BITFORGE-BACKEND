@@ -15,10 +15,17 @@ return [
     |
     */
 
-    'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
-        '%s%s',
-        'localhost,localhost:3000,cst5l-bitforge-frontend-production.up.railway.app',
-        Sanctum::currentApplicationUrlWithPort()
+    'stateful' => array_filter(array_unique(array_merge(
+        explode(',', env('SANCTUM_STATEFUL_DOMAINS', '')),
+        [
+            'localhost',
+            'localhost:3000',
+            '127.0.0.1',
+            '127.0.0.1:8000',
+            '::1',
+            'cst5l-bitforge-frontend-production.up.railway.app',
+            // Add any other domains you need
+        ]
     ))),
 
     /*
