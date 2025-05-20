@@ -15,7 +15,6 @@ return Application::configure(basePath: dirname(__DIR__))
         // Add FIRST in middleware stack
         $middleware->prepend([
             \Illuminate\Http\Middleware\HandleCors::class,
-            \App\Http\Middleware\ForceCors::class,
         ]);
         
         // Railway proxy support
