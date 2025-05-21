@@ -18,14 +18,12 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy composer files first for caching
-COPY composer.json composer.lock ./
+# Copy ALL files first (including artisan)
+COPY . .
 
 # Install PHP dependencies (no dev packages)
-RUN composer install --no-dev --optimize-autoloader --no-interaction
-
-# Copy application files
-COPY . .
+RUN composer install --no-dev --optimize-autoloader --no-interaction \
+    && php artisan package:discover --ansi
 
 # Set permissions
 RUN chown -R www-data:www-data \
@@ -52,8 +50,5 @@ COPY --from=php /var/www/html /var/www/html
 COPY railway/start.sh /start.sh
 RUN chmod +x /start.sh
 
-# Environment variables
-ENV PORT=8000
 EXPOSE ${PORT}
-
 CMD ["/start.sh"]

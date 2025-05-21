@@ -9,3 +9,11 @@
 !composer.*
 !database/migrations/
 !railway.json
+!*.php
+!*.json
+!*.lock
+!*.sh
+!/database/
+!/config/
+!/routes/
+!/public/
