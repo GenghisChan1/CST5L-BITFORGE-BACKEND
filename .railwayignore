@@ -1,5 +1,4 @@
 # Block ALL files except these
-*
 !.gitignore
 !Dockerfile
 !nginx.conf
@@ -17,3 +16,4 @@
 !/config/
 !/routes/
 !/public/
+*
