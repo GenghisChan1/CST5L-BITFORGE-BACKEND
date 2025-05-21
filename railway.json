@@ -1,0 +1,8 @@
+{
+  "build": {
+    "builder": "DOCKERFILE",
+    "buildCommand": "docker build -t myapp .",
+    "installCommand": "",
+    "startCommand": "/start.sh"
+  }
+}

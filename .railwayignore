@@ -1,7 +1,11 @@
+# Block ALL files except these
 *
+!.gitignore
 !Dockerfile
 !nginx.conf
 !php-fpm.conf
+!railway/
 !railway/start.sh
 !composer.*
-!.env
+!database/migrations/
+!railway.json
