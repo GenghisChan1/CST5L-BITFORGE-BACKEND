@@ -17,15 +17,16 @@ php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 
-# Run migrations (if needed)
+# Run Laravel setup
 php artisan migrate --force
+php artisan optimize:clear
 
 # Create necessary directories
 mkdir -p /var/run/php
 chown -R nobody:nobody /var/run/php
 
 # Start PHP-FPM with explicit config
-php-fpm -y /etc/php/php-fpm.conf -D
+php-fpm 
 
 # Start Nginx
 nginx -g 'daemon off;'
