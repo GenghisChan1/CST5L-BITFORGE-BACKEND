@@ -1,0 +1,7 @@
+*
+!Dockerfile
+!nginx.conf
+!php-fpm.conf
+!railway/start.sh
+!composer.*
+!.env

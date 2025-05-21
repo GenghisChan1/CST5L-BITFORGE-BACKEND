@@ -27,26 +27,9 @@ until php artisan migrate --force; do
     sleep 5
 done
 
-# Generate nginx config with dynamic PORT
-envsubst '\$PORT' < /app/nginx.conf > /etc/nginx/nginx.conf
+# Generate nginx config
+envsubst '\$PORT' < /var/www/html/nginx.conf > /etc/nginx/conf.d/default.conf
 
-# Start PHP-FPM in background
-php-fpm -y /etc/php/php-fpm.conf -D
-
-# Run Laravel optimizations
-php artisan optimize:clear
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-
-# Run Laravel setup
-php artisan migrate --force
-php artisan optimize:clear
-
-# Create necessary directories
-mkdir -p /var/run/php
-chown -R nobody:nobody /var/run/php
-
-# Start PHP-FPM with explicit config
-php-fpm &
+# Start services
+php-fpm -D
 nginx -g 'daemon off;'
