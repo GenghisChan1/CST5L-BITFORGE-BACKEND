@@ -25,7 +25,9 @@ COPY . .
 
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction \
-    && php artisan package:discover --ansi
+    && php artisan package:discover --ansi \
+    && php artisan storage:link \
+    && php artisan config:cache
 
 # Configure Nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
