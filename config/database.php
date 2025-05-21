@@ -44,14 +44,14 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'shortline.proxy.rlwy.net'),
-            'port' => env('DB_PORT', '42704'), // Use Railway's proxy port
+            'host' => env('DB_HOST', 'nozomi.proxy.rlwy.net'),
+            'port' => env('DB_PORT', '52408'),
             'database' => env('DB_DATABASE', 'railway'),
             'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', 'ractKDvkkdhLGTxNNttdRWgmxzzHBSGU'),
+            'password' => env('DB_PASSWORD', 'bdwtfQKZGQxLLbUIuVEzGveTxrNbsKuU'),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
-            'strict' => false, // Temporarily set to false for debugging
+            'strict' => false,
             'engine' => null,
             'options' => [
                 PDO::MYSQL_ATTR_SSL_CA => '/etc/ssl/certs/ca-certificates.crt',
@@ -59,6 +59,7 @@ return [
                 PDO::ATTR_TIMEOUT => 10,
             ],
         ],
+
 
         //'mariadb' => [
         //    'driver' => 'mariadb',
